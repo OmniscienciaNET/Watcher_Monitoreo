@@ -35,7 +35,7 @@ function enviarServidor(url, metodo, estado) {
     xhr.send();
 }
 
-/*
+
 function ConfigurarExit() {
     var msj;
     document.getElementById("btnExit").onclick = function () {        
@@ -95,8 +95,8 @@ function ConfigurarExit() {
         }
     }
 }
-*/
 
+/*
 function ConfigurarExit() {
     var msj;
     document.getElementById("btnExit").onclick = function () {
@@ -154,6 +154,7 @@ function ConfigurarExit() {
         
     }
 }
+*/
 
 $("#btnSi").click(function () {
     //document.getElementById("btnSi").onclick = function ()
