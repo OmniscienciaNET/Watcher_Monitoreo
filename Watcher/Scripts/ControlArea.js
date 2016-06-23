@@ -260,6 +260,75 @@ function ConfigurarExit() {
     var msj;
     document.getElementById("btnExit").onclick = function () {
 
+        if (confirm("Se relevarán las alarmas pendientes") == true) {
+
+            $("#myUserLogIn").on("hide.bs.modal", function () { $("#tbUserLogIn").empty(); });
+            document.getElementById("btnExit").setAttribute("data-target", "#myUserLogIn");
+
+            $.ajax({
+                type: "post",
+                url: "../Modulo/ListarUsuarioEnLinea",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var contenido = $("#tbUserLogIn");
+                    if (data.length == 0) {
+                        contenido.append("<tr style='border-top: 1px solid #222;border-bottom: 1px solid #222'><td colspan='10'>No se encontraron registros</td></tr>");
+                    }
+                    else {
+                        var tr = "";
+                        for (var i = 0; i < data.length; i++) {
+
+                            tr = "<tr id='TR_User_" + data[i].User + "' style='border-top: 1px solid #222;border-bottom: 1px solid #222;cursor:pointer' onmouseover=\"this.style.backgroundColor='red';this.style.color='white';\" onmouseout=\"this.style.backgroundColor='white';this.style.color='black';\">";
+                            contenido.append(tr + "<td id='TD1_User_" + data[i].User + "'>" + data[i].Nombres + "</td><td id='TD2_User_" + data[i].User + "' style='width: 200px'>" + data[i].Cargo + "</td></tr>");
+                        }
+                        $("[id*=TR_User_]").click(function () {
+                            var id = this.id;
+                            var usuario = id.substring(8, id.length);
+                            var nombreUsuario = document.getElementById("TD1_User_" + usuario);
+                            if (confirm("Desea asignar todas sus alarmas pendientes, incluyendo esta, al usuario " + nombreUsuario.innerHTML)) {
+                                $.ajax
+                                    ({
+                                        type: "post",
+                                        url: "../Modulo/RelevarAlarmas",
+                                        contentType: "application/json; charset=utf-8",
+                                        data: "{UsuarioAsignado: '" + usuario + "'}",
+                                        dataType: "json",
+                                        success: function (data) {
+                                            if (data == true) {
+                                                $("#myUserLogIn").modal("hide");
+                                                alert("Se han relevado las alarmas pendientes correctamente");
+                                                PopupAlarma();
+                                                salir = 0;
+                                                enviarServidor("../Modulo/LogOut", Exit);
+                                            }
+                                            else {
+                                                alert("No hay alarmas pendientes para relevar");
+                                                salir = 0;
+                                                enviarServidor("../Modulo/LogOut", Exit);
+                                            }
+                                        },
+                                        //error: error
+                                    });
+                            }
+                        });
+                    }
+                },
+                //error: error
+            });
+        }
+        else {
+            salir = 0;
+            enviarServidor("../Modulo/LogOut", Exit);
+        }
+    }
+}
+
+/*
+function ConfigurarExit() {
+    var msj;
+    document.getElementById("btnExit").onclick = function () {
+
         if (confirm("Desea hacer revelo de alarmas?") == true) {
 
             $("#myUserLogIn").on("hide.bs.modal", function () { $("#tbUserLogIn").empty(); });
@@ -315,6 +384,7 @@ function ConfigurarExit() {
         }
     }
 }
+*/
 
 function Exit(rpta) {
     if (rpta != "") {
