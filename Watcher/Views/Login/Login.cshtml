@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>Login</title>
+    <link href="~/Content/Login.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="divlogin">
+        <h1><strong>Sistema Supervisión Y Control</strong></h1>
+        <div style="margin:.5em 25px;background:#eee;padding:4px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-align:right;position:relative;">
+            <label for="login_username">Usuario</label>
+            <input id="txtUsername" type="text" maxlength="10" class="field required" placeholder="Ingrese SU Usuario" style="text-transform:uppercase" />
+        </div>
+        <div style="margin:.5em 25px;background:#eee;padding:4px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-align:right; position:relative;">
+            <label for="login_password">Password</label>
+            <input id="txtPassword" type="password" maxlength="10" class="field required" placeholder="INGRESE SU PASSWORD" />
+        </div>
+        <div style="margin:.5em 25px;background:#eee;padding:4px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-align:right; position:relative;">
+            <label for="login_username">Distribuidor</label>
+            <input id="txtDstb" type="text" maxlength="3" class="field required" style="width:50px;margin-right:230px;text-transform:uppercase" placeholder="INGRESE" />
+        </div>
+        <div class="submit">
+            <input type="button" id="btnLogin" value="Ingresar" class="boton" />
+            <label>
+                <input id="chkRemember" type="checkbox" />Recordar
+            </label>
+        </div>
+        <div id="divError" style="text-align:center;font-weight:bold;font-size:medium;color:red;"></div>
+    </div>
+    <script src="../Scripts/Login.js"></script>
+</body>
+</html>

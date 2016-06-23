@@ -1,0 +1,595 @@
+﻿@{
+    ViewBag.Title = "Evento Administrativo";
+}
+
+<link href="~/Content/Popup.css" rel="stylesheet" />
+<table id="tbAlarmas" border="0" cellpadding="0" cellspacing="0" style="width: 100%; position: absolute; visibility: hidden;">
+    <tr>
+        <td>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="context_table" style="width:99%">
+                <tr>
+                    <td align="center" class="cab_context">
+                        <img src="~/Images/Monitoreo/Bell.png" width="20" style="float:left" />
+                        <h4 id="tAlarmasPerfil" class="modal-title" style="padding-left:30px;font-size:14px;color:white;font-weight:bold">LISTADO DE ALARMA</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="tdAlarmasPerfil" style="width:100%;" valign="top" align="center">
+                        <table style="width: 100%; font-size: x-small;border:none;border-collapse:collapse">
+                            <tr style="background-color: darkgray; font-size: 9pt;font-weight:bold;height:30px">
+                                <td style="width: 200px; text-align: center">DISTRIBUIDOR</td>
+                                <td style="width: 80px; text-align: center">ABONADO</td>
+                                <td style="width: 240px; text-align: center">OFICINA</td>
+                                <td style="width: 80px; text-align: center">CODIGO ALARMA</td>
+                                <td style="width: 240px; text-align: center">ALARMA</td>
+                                <td style="width: 80px; text-align: center">PRIORIDAD</td>
+                                <td style="width: 110px; text-align: center">FECHA</td>
+                                <td style="width: 80px; text-align: center">ESTADO</td>
+                                <td style="text-align: center">USUARIO</td>
+                                <td style="width: 80px; text-align: left"></td>
+                            </tr>
+                        </table>
+                        <div style="height:350px; overflow:auto;">
+                            <table id="tbListadoAlarmas" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                        </div>
+                        <br />
+                        <table id="PaginadoAlarma" style="width:100%">
+                            <tr>
+                                <td style="text-align:center">
+                                    <input id="FirstAlarmas" type="button" value="<<" />
+                                    <input id="BeforeAlarmas" type="button" value="<" />
+                                    <input id="txtPosicionAlarmas" readonly="readonly" style="width:100px;text-align:center">
+                                    <input id="NextAlarmas" type="button" value=">" />
+                                    <input id="LastAlarmas" type="button" value=">>" />
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table id="tbMonitoreo" style="width:100%;font-family:Calibri;font-weight:bold;position:absolute">
+    <tr>
+        <td>
+            <table cellspacing="0" style="width:100%">
+                <tr>
+                    <td style="width:160px">
+                        <img src="../Images/LogoWatcher.png" alt="Monitoreo" title="Monitoreo" style="cursor:pointer; height: 140px" onclick="window.location='../Modulo/Visor'" />
+                        <button id="btnInicio" type="button" data-toggle="modal" data-target="#myModalInicio" style="display:none"></button>
+                    </td>
+                    <td style="font-size:12px">
+                        <table cellpadding="0" cellspacing="0" style="width: 100%; border-top: 1px solid LightGray; border-bottom: 5px double LightGray">
+                            <tr>
+                                <td style="width:30%;border-right: 3px inset DarkGray">
+                                    <table>
+                                        <tr>
+                                            <td style="padding-right:10px;color:gray">Código de Alarma</td>
+                                            <td id="MonAlarmaCode"></td>
+
+                                            <td style="text-align:right">
+                                                <button id="btnSelectAlarmAdm" type="button" data-toggle="modal" data-target="#myModalAlarmAdm">...</button>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 70px; color: gray">Nombre</td>
+                                            <td id="MonDescripcion" style="color: Red"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray">Zona alarma</td>
+                                            <td id="MonPhysicalZone"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px; color: gray">Nombre de zona</td>
+                                            <td id="MonNomZona"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray">Tipo de evento</td>
+                                            <td id="MonTipoEvento"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray">Evento N°</td>
+                                            <td id="MonAlarmhistory"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width: 45%; padding-left: 20px; border-right: 3px inset DarkGray">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="color: gray;width:100px">ID Abonado</td>
+                                            <td id="MonCSID" colspan="3"></td>
+                                            <td style="text-align:right">
+                                                <button id="btnListarSubscriber" type="button" data-toggle="modal" data-target="#myModalSubscriber">...</button>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray;width:100px">Nombre</td>
+                                            <td id="MonOficina" colspan="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray;width:100px">Dirección</td>
+                                            <td id="MonDireccion" colspan="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray;width:100px">Departamento</td>
+                                            <td id="MonDepartamento">Sin Departamento</td>
+                                            <td style="color: gray;width:100px">Provincia</td>
+                                            <td id="MonProvincia">Sin Provincia</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray;width:100px">Distrito</td>
+                                            <td id="MonDistrito">Sin Distrito</td>
+                                            <td style="color: gray;width:100px">Tipo Particion</td>
+                                            <td id="MonTipoCSID">Sin Tipo</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: gray;width:100px">Fecha Ocurrencia</td>
+                                            <td id="FecOcurrencia" colspan="3"></td>
+                                            <td><button id="btnRegistrar" style="width:100px;font-weight:bold">Grabar</button></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="padding-left:20px">
+                                    <table style="width: 80%; padding-bottom: 10px; border-bottom: 3px inset Gray;">
+                                        <tr>
+                                            <td colspan="3" style="border:3px ridge Gray;font-size:14px"><b>Nivel de riesgo de la instalación</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:gray;padding-right:10px;padding-top:10px">INHERENTE</td>
+                                            <td style="vertical-align:bottom">MODERADO</td>
+                                            <td style="vertical-align:bottom"><div style="background-color: rgb(0,112,192); width: 24px;height:20px"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:gray;padding-top:5px">RESIDUAL</td>
+                                            <td style="vertical-align:bottom">BAJO</td>
+                                            <td style="vertical-align:bottom"><div style="background-color: rgb(0,176,80); width: 24px; height: 20px"></div></td>
+                                        </tr>
+                                    </table>
+                                    <table align="center" style="padding-top:5px">
+                                        <tr>
+                                            <td style="background-color: Gray; border-radius: 10px;">
+                                                <div id="relojNivel" style="font-size: 25px; color: white; background-color: rgb(40, 153, 40); text-align: center; border-radius:10px;width:110px;border: 2px ridge Gray"><label style='vertical-align:top'>00<label style='font-size:20px'>:</label>00<label style='font-size:20px'>:</label>00</label></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%">
+                <tr>
+                    <td style="width:22%;vertical-align:top">
+                        <table style="width:100%">
+                            <tr>
+                                <td><div style="border: 3px ridge Gray;width:70%">Contacto en la locación</div></td>
+                                <td style="text-align:right">
+                                    <button id="btnMonContactoLoc" type="button" disabled="disabled" data-toggle="modal" data-target="#myModal"><img alt="" src="~/Images/Monitoreo/ContacLoc.png" width="30"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div style="border: 3px ridge Gray;width:70%">Responsable de Seguridad</div></td>
+                                <td style="text-align:right">
+                                    <button id="btnMonResSeg" type="button" disabled="disabled" data-toggle="modal" data-target="#myModalSeg"><img alt="" src="~/Images/Monitoreo/ResSeg.png" width="30"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> <div style="color:White;background-color:red; border: 3px ridge red; font-size: 14px;margin-bottom:3px">Emergencias</div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table style="width:100%;border-collapse:collapse">
+                                        <tr>
+                                            <td style="width:30%">Policía</td>
+                                            <td>
+                                                <button id="btnMonEmPolicial" type="button" disabled="disabled" data-toggle="modal"><img id="imgPolicial" alt="" src="~/Images/Monitoreo/Policial.png" width="20" height="20"></button>
+                                            </td>
+                                            <td>Servicios</td>
+                                            <td style="text-align:right">
+                                                <button id="btnMonEmServicios" type="button" disabled="disabled" data-toggle="modal"><img id="imgServicios" alt="" src="~/Images/Monitoreo/Servicios.png" width="20" height="20"></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:30%">Fuego</td>
+                                            <td>
+                                                <button id="btnMonEmFuego" type="button" disabled="disabled" data-toggle="modal"><img id="imgFuego" alt="" src="~/Images/Monitoreo/Fuego.png" width="20" height="20"></button>
+                                            </td>
+                                            <td>Ronda Móvil</td>
+                                            <td style="text-align:right">
+                                                <button id="btnMonEmRondaMovil" disabled="disabled" type="button" data-toggle="modal"><img id="imgRondaMovil" alt="" src="~/Images/Monitoreo/RondaMovil.png" width="20" height="20"></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:10px">Médica</td>
+                                            <td style="padding-bottom: 10px">
+                                                <button id="btnMonEmMedica" disabled="disabled" type="button" data-toggle="modal"><img id="imgMedica" alt="" src="~/Images/Monitoreo/Medica.png" width="20" height="20"></button>
+                                            </td>
+                                            <td style="padding-bottom:10px">Stop ATM</td>
+                                            <td style="padding-bottom: 10px;text-align:right">
+                                                <button id="btnMonEmStopATM" disabled="disabled" type="button" data-toggle="modal"><img id="imgStopATM" alt="" src="~/Images/Monitoreo/StopATM.png" width="20" height="20"></button>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-top:2px ridge Gray">
+                                            <td colspan="2" style="text-align:right;padding-right:5px;padding-top:10px;width:50%">
+                                                <button id="btnMonCirnum" disabled="disabled" type="button" style="width:70px;height:70px"><img id="imgCirnum" alt="" src="~/Images/Monitoreo/Cirnum.png" width="50" height="50"></button>
+                                            </td>
+                                            <td colspan="2" style="padding-left:5px;padding-top:10px">
+                                                <button id="btnMonHerramientas0" disabled="disabled" type="button" style="width:70px;height:70px"><img id="imgHerramientas0" alt="" src="~/Images/Monitoreo/Herramientas.png" width="50" height="50"></button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align:top;width:43%;padding-left:15px">
+                        <table cellpadding="0" cellspacing="0" style="width:100%">
+                            <tr>
+                                <td colspan="2"><div style="border: 3px ridge Gray; font-size: 14px;width:95%;margin-bottom:3px">Reporte De Eventos</div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-bottom:3px">
+                                    <input id="txtMonComentario" type="text" style="width:95%;border: 2px solid Gray;background-color:White;margin-bottom:5px;text-transform:uppercase" />
+                                    <textarea id="txtMonReportEvent" readonly="readonly" style="resize:none;width:95%;height:95px;border: 2px solid Gray; background-color:White"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><div style="border: 3px ridge Gray; font-size: 14px;width:95%;margin-bottom:3px">Historial Últimos Eventos</div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <textarea id="txtLastHistoryEvent" style="resize:none;width:95%;height:95px;border: 2px solid Gray; background-color:DarkGray;margin-bottom:5px" readonly="readonly"></textarea>
+                                </td>
+                            </tr>
+                            <tr style="padding-left: 10%">
+                                <td><div style="border: 3px ridge Gray; font-size: 14px;width:70%;margin-bottom:2px">Duración Del Evento</div></td>
+                                <td><div id="relojEvento" style="font-size: 18px; color: Black; text-align: center; width:110px;border: 1px ridge Gray;height:23px">00:00:00</div></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align:top">
+                        <table cellpadding="0" cellspacing="0" style="width:100%">
+                            <tr>
+                                <td>
+                                    <div style="border: 3px ridge Gray; font-size: 14px;width:95%;margin-bottom:3px">Procedimiento</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-bottom:3px">
+                                    <textarea style="resize:none;width:95%;height:115px;border: 2px solid Red; background-color:DarkGray" readonly="readonly"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table cellpadding="0" cellspacing="0" style="color:White;background-color:red; border: 3px ridge red; font-size: 14px;width:95%;margin-bottom:3px">
+                                        <tr>
+                                            <td>Frase clave:</td>
+                                            <td>TENGO LA CAMISA NEGRA</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (ViewBag.Perfil == 2)
+                                    {
+                                        <table style="margin-bottom:3px">
+                                            <tr>
+                                                <td>
+                                                    <button id="btnMonListadoAlarmas" type="button" disabled="disabled"><img id="imgamientas" alt="" src="~/Images/Monitoreo/Buscar.png" width="20" height="20"></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <table style="margin-bottom:3px">
+                                            <tr>
+                                                <td>
+                                                    <button id="btnMonUserLogIn" data-toggle="modal" data-target="#myUserLogIn" type="button" disabled="disabled"><img id="imgamientas" alt="" src="~/Images/Monitoreo/btnrelevo.png" width="20" height="20"></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="border: 3px ridge Gray; font-size: 14px;width:95%;margin-bottom:3px">Resultado de la gestión realizada</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td>Alarma Real</td>
+                                            <td>
+                                                <button id="btnMonAlarmReal" type="button" disabled="disabled"><img id="imgHerramientas1" alt="" src="~/Images/Monitoreo/campanaroja.png" width="20" height="20"></button>
+                                            </td>
+                                            <td>Seguimiento</td>
+                                            <td>
+                                                <button id="btnMonAlarmWait" type="button" disabled="disabled"><img id="imgHerramientas11" alt="" src="~/Images/Monitoreo/relojarena.png" width="20" height="20"></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Falsa alarma</td>
+                                            <td>
+                                                <button id="btnMonAlarmFake" type="button" data-toggle="modal" disabled="disabled"><img alt="" src="~/Images/Monitoreo/campananegra.png" width="20" height="20"></button>
+                                            </td>
+                                            @if (ViewBag.Perfil == 1)
+                                            {
+                                                <td>Escalamiento</td>
+                                                <td>
+                                                    <button id="btnMonScalar" type="button" disabled="disabled"><img alt="" src="~/Images/Monitoreo/flechaarriba.png" width="20" height="20"></button>
+                                                </td>
+                                            }
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+<div class="modal fade" id="myResolution" tabindex="-1" role="dialog" aria-labelledby="myResolution" style="width:40%; left:34% ;outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: red;padding:10px">
+                <img src="~/Images/Monitoreo/Resolution.jpg" width="32" style="float:left" />
+                <h4 class="modal-title" id="myResolution" style="padding-left:50px;padding-top:5px; font-size:18px;color:white;font-weight:bold">RESOLUCIÓN DE ALARMAS</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table style="width:100%">
+                        <tr>
+                            <td colspan="2" style="padding-bottom:15px">Seleccione la resolución con la que se va a cerrar la alarma</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom:15px;padding-left:10px">Resolucion</td>
+                            <td style="padding-bottom: 15px">@Html.DropDownList("Resolution", new SelectList(ViewBag.ListaResolution, "ResolutionCode", "ResolutionDesc"), new { id = "ddlResolution" })</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:right">
+                                <button id="btnMonCloseAlarm" disabled="disabled" style="width:200px;font-weight:bold">ACEPTAR</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalSeg" tabindex="-1" role="dialog" aria-labelledby="myContactoSeguridadLabel" style="width:40%;left:30%; outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(#04ACEC, #0186BA)">
+                <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myContactoSeguridadLabel" style="font-size:14px;color:white;font-weight:bold">CONTACTO ÁREA DE SEGURIDAD</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <table style="width: 100%; font-size: x-small;border:none;border-collapse:collapse">
+                                    <tr style="background-color: darkgray; font-size: 9pt;font-weight:bold;height:30px">
+                                        <td style="width: 230px; text-align: left">NOMBRES Y APELLIDOS </td>
+                                        <td style="width: 350px; text-align: left">CARGO</td>
+                                        <td style="width: 230px; text-align: left">TELEFONO / CELULAR</td>
+                                    </tr>
+                                </table>
+                                <div style="height:150px; overflow:auto;">
+                                    <table id="tbRegcontactoseg" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myContactoLabel" style="width:40%; left:30%; outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(#04ACEC, #0186BA)">
+                <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myContactoLabel" style="font-size:14px;color:white;font-weight:bold">CONTACTO CLIENTE O LOCATORIO</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <table style="width: 100%; font-size: x-small;border:none;border-collapse:collapse">
+                                    <tr style="background-color: darkgray; font-size: 9pt;font-weight:bold;height:30px">
+                                        <td style="width: 230px; text-align: left">NOMBRES Y APELLIDOS </td>
+                                        <td style="width: 350px; text-align: left">CARGO</td>
+                                        <td style="width: 230px; text-align: left">TELEFONO / CELULAR</td>
+                                    </tr>
+                                </table>
+                                <div style="height:150px; overflow:auto;">
+                                    <table id="tbRegcontactoloc" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myUserLogIn" tabindex="-1" role="dialog" aria-labelledby="myUserLogInLabel" style="width:40%; left:30%; outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(#04ACEC, #0186BA)">
+                <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myUserLogInLabel" style="font-size:14px;color:white;font-weight:bold">ADMINISTRADORES Y SUPERVISORES EN LÍNEA</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <table style="width: 100%; font-size: x-small;border:none;border-collapse:collapse">
+                                    <tr style="background-color: darkgray; font-size: 9pt;font-weight:bold;height:30px">
+                                        <td style="text-align: left">NOMBRES Y APELLIDOS </td>
+                                        <td style="width: 200px; text-align: left">CARGO</td>
+                                    </tr>
+                                </table>
+                                <div style="height:150px; overflow:auto;">
+                                    <table id="tbUserLogIn" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalEmergencia" tabindex="-1" role="dialog" aria-labelledby="myConsultaEmergencialLabel" style="width:80%; left:10%; outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: red">
+                <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myConsultaEmergencialLabel" style="font-size:14px;color:white;font-weight:bold"></h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <table id="tbCabecera" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                <div style="height:150px; overflow:auto;">
+                                    <table id="tbRegConsultaEmergencia" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                </div>
+                                <table id="tbMantenimiento">
+                                    <tr>
+                                        <td colspan="2">
+                                            <button id="btnMonNuevo" type="button" disabled="disabled" class="btn btn-primary" style="width:90px">Nuevo</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalAlarmAdm" tabindex="-1" role="dialog" aria-labelledby="myAlarmAdmLabel" style="width:40%;left:30%; outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(#04ACEC, #0186BA)">
+                <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myAlarmAdmLabel" style="font-size:14px;color:white;font-weight:bold">Lista de Alarmas Administrativas</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <table style="width: 100%; font-size: x-small;border:none;border-collapse:collapse">
+                                    <tr style="background-color: darkgray; font-size: 9pt;font-weight:bold;height:30px">
+                                        <td style="width: 230px; text-align: left">CODIGO </td>
+                                        <td style="width: 350px; text-align: left">DESCRIPCIÓN</td>
+                                    </tr>
+                                </table>
+                                <div style="height:150px; overflow:auto;">
+                                    <table id="tbRegAlarmAdm" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalSubscriber" tabindex="-1" role="dialog" aria-labelledby="mySubscriberLabel" style="width:40%;left:30%; outline:0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(#04ACEC, #0186BA)">
+                <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mySubscriberLabel" style="font-size:14px;color:white;font-weight:bold">Lista de Abonados</h4>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            Cod. Abonado
+                        </td>
+                        <td>
+                            <input id="txtParticionbus" type="text" style="width:70px;border: 2px solid Gray;background-color:White;margin-bottom:5px;text-transform:uppercase" />
+                        </td>
+                        <td></td>
+                        <td>
+                            Oficina
+                        </td>
+                        <td>
+                            <input id="txtOficinabus" type="text" style="width:150px;border: 2px solid Gray;background-color:White;margin-bottom:5px;text-transform:uppercase" />
+                        </td>
+
+                        <td style="text-align:right">
+                            <button id="btnBusSubscriber" type="button">Buscar</button>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <table style="width: 100%; font-size: x-small;border:none;border-collapse:collapse">
+                                    <tr style="background-color: darkgray; font-size: 9pt;font-weight:bold;height:30px">
+                                        <td style="width: 230px; text-align: left">COD. ABONADO </td>
+                                        <td style="width: 350px; text-align: left">OFICINA</td>
+                                    </tr>
+                                </table>
+                                <div style="height:150px; overflow:auto;">
+                                    <table id="tbRegSubscriber" style="width: 100%; font-size: x-small;border:none;border-collapse:collapse"></table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/bootstrapPopup.js"></script>
+<script src="~/Scripts/EventoAdministrativo.js"></script>
+<script>inicioEventoAdministrativo();</script>
+
+

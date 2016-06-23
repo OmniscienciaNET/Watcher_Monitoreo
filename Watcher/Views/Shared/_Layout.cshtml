@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Menu.css" rel="stylesheet" />
+    <link href="~/Content/Master.css" rel="stylesheet" />
+    <link href="~/Content/Modulo.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="page">
+        <div class="header" style="position:fixed;z-index:1">
+            <div class="title">
+                <img alt="" src="~/Images/LogoWatcher.png" width="65" />
+            </div>
+            <div style="background-color: #222;width:100%;color:white">
+                <div style="text-align: right; width: 100%">
+                    <div id="btnExit" style="height:22px;padding-right:10px;cursor:pointer" data-toggle="modal" data-target="#myUserLogIn">
+                        <img alt="" src="~/Images/exit.png" width="15" style="vertical-align:middle;padding-right:10px;" /><b style="font-size:10px">Salir</b>
+                    </div>
+                    @*<button id="btnMonUserLogIn1" data-toggle="modal" data-target="#myUserLogIn" type="button" ><img id="imgamientas" alt="" src="~/Images/Monitoreo/Buscar.png" width="20" height="20"></button>*@
+                </div>
+            </div>
+            <div class="loginDisplay" style="padding-right:10px;padding-top:8px">
+                <div>
+                    <div>
+                        <b id="iduserall" style="padding-right: 10px">@Server.HtmlEncode(Request.Cookies["Usuario"].Value.ToString().ToUpper())</b><img alt="" src="~/Images/user.png" width="30" style="vertical-align:middle" />
+                    </div>
+                </div>
+            </div>
+            <div class="clear hideSkiplink">
+                <label style="font-weight: bold; float: right; color: white; padding-left: 35%; padding-right: 10px; padding-top: 2px">Watcher v 1.002</label>
+                <label style="font-weight: bold; float: right; color: white; padding-right: 10px; padding-top: 2px; text-transform: uppercase; ">@ViewBag.Title</label>
+                <ul id="menu">
+                    <li>
+                        <a href="#">Módulos</a>
+                        <ul>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Monitoreo'">Monitoreo de Alarma</a></li>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/Visor'">Visor de Alarmas</a></li>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/FalloTest'">Fallo de Test</a></li>
+                            <li>
+                                <a href="#">Control</a>
+                                <ul>
+                                    <li><a href="#" onclick="salir = 0; window.location = '../Modulo/ControlArea'">Area</a></li>
+                                    <li><a href="#" onclick="salir = 0; window.location = '../Modulo/ControlArea1864'">Area 1864</a></li>
+                                    <li><a href="#" onclick="salir = 0; window.location = '../Modulo/ControlSenal'">Señales sin Respuesta</a></li>
+                                    <li><a href="#" onclick="salir = 0; window.location = '../Modulo/ControlCierre'">Cierre</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/SupervisionCaidas'">Supervisión Caidas de Red</a></li>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/ReporteActividades'">Reporte Actividades</a></li>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/EstadisticoAlarmas'">Estadístico de Alarmas</a></li>
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/ParticionEstado'">Partición Estado</a></li>
+
+                            <li><a href="#" onclick="salir = 0; window.location = '../Modulo/EventoAdministrativo'">Evento Administrativo</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div style="background: rgb(212, 208, 200); padding-top: 5px;font-size:11px">
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%;padding-bottom:5px">
+                    <tr>
+                        <td align="center" style="width:70px;text-align:center"><img src="../Images/Modulos/Monitoreo.png" alt="Monitoreo" title="Monitoreo" style="cursor:pointer; height: 32px" onclick="salir = 0; window.location = '../Modulo/Monitoreo'" /></td>
+                        <td align="center" style="width:70px;text-align:center"><img src="../Images/Modulos/VisorSeñales.png" alt="Monitoreo" title="Monitoreo" style="cursor:pointer; height: 32px" onclick="salir = 0; window.location = '../Modulo/Visor'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/area.png" alt="Area" title="Area" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/ControlArea'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/area.png" alt="Area1864" title="Area1864" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/ControlArea1864'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/ReporteActividad.png" alt="Actividad" title="Actividad" border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/ReporteActividades'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/noresp.png" alt="No resp." title="No resp." border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/ControlSenal'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/SupervisionCaida.png" alt="Caida" title="Caida" border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/SupervisionCaidas'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/test.png" alt="Test" title="Test" border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/FalloTest'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/cierre.png" alt="Cierre" title="Cierre" border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/ControlCierre'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/ReporteEstadistico.png" alt="Rpt Estadist." title="Rpt Estadist." border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/EstadisticoAlarmas'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/Parti.png" alt="Rpt Estadist." title="Rpt Estadist." border="0" style="cursor:pointer;" onclick="salir = 0; window.location = '../Modulo/ParticionEstado'" /></td>
+                        <td align="center" style="width: 70px; text-align: center"><img src="../Images/Modulos/EventoAdmin.png" alt="Evento Adm" title="Rpt Estadist." border="0" style="cursor:pointer;" onclick="salir = 0;window.location='../Modulo/EventoAdministrativo'" /></td>
+                    </tr>
+                    <tr style="font-weight:bold">
+                        <td align="center" style="width: 70px; text-align: center">Monitoreo Alarmas</td>
+                        <td align="center" style="width: 70px; text-align: center">Visor Señales</td>
+                        <td align="center" style="width: 70px; text-align: center">Control Área</td>
+                        <td align="center" style="width: 70px; text-align: center">Control Área 1864</td>
+                        <td align="center" style="width: 70px; text-align: center">Reporte Actividad</td>
+                        <td align="center" style="width: 70px; text-align: center">No Respondidas</td>
+                        <td align="center" style="width: 70px; text-align: center">Supervisión Caída</td>
+                        <td align="center" style="width: 70px; text-align: center">Fallo Test</td>
+                        <td align="center" style="width: 70px; text-align: center">Control Cierre</td>
+                        <td align="center" style="width: 70px; text-align: center">Reporte Estadístico</td>
+                        <td align="center" style="width: 70px; text-align: center">Partición Estado</td>
+                        <td align="center" style="width: 70px; text-align: center">Evento Administrativo</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container body-content" style="padding-top:155px">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

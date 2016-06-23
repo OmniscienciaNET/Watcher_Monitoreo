@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45B4A388-3CAA-4453-8BF7-FF9E3DFA7F7E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Watcher</RootNamespace>
+    <AssemblyName>Watcher</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="General.Librerias.CodigoUsuario, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BusinessRules\bin\Debug\General.Librerias.CodigoUsuario.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\Master.css" />
+    <Content Include="Content\Menu.css" />
+    <Content Include="Content\Modulo.css" />
+    <Content Include="Content\Popup.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\AlrNegro.PNG" />
+    <Content Include="Images\AlrNegrocAmarillo.PNG" />
+    <Content Include="Images\AlrRojo.PNG" />
+    <Content Include="Images\AlRrojocAmarillo.PNG" />
+    <Content Include="Images\binocular.png" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\exit.png" />
+    <Content Include="Images\exportExcel.png" />
+    <Content Include="Images\images\animated-overlay.gif" />
+    <Content Include="Images\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Images\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Images\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Images\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Images\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Images\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Images\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Images\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Images\images\ui-icons_222222_256x240.png" />
+    <Content Include="Images\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Images\images\ui-icons_454545_256x240.png" />
+    <Content Include="Images\images\ui-icons_888888_256x240.png" />
+    <Content Include="Images\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Images\Limpiar.png" />
+    <Content Include="Images\LogoWatcher.png" />
+    <Content Include="Images\LogoWatcher_Header.png" />
+    <Content Include="Images\Mantenimiento\assign.png" />
+    <Content Include="Images\Mantenimiento\cancel.png" />
+    <Content Include="Images\Mantenimiento\delete.png" />
+    <Content Include="Images\Mantenimiento\edit.png" />
+    <Content Include="Images\Mantenimiento\save.png" />
+    <Content Include="Images\Mantenimiento\view.png" />
+    <Content Include="Images\Modulos\area.png" />
+    <Content Include="Images\Modulos\cierre.png" />
+    <Content Include="Images\Modulos\EventoAdmin.png" />
+    <Content Include="Images\Modulos\Monitoreo.png" />
+    <Content Include="Images\Modulos\noresp.png" />
+    <Content Include="Images\Modulos\Parti.png" />
+    <Content Include="Images\Modulos\ReporteActividad.png" />
+    <Content Include="Images\Modulos\ReporteEstadistico.png" />
+    <Content Include="Images\Modulos\SupervisionCaida.png" />
+    <Content Include="Images\Modulos\test.png" />
+    <Content Include="Images\Modulos\VisorSeñales.png" />
+    <Content Include="Images\Monitoreo\Admiracion.png" />
+    <Content Include="Images\Monitoreo\Alertaverde.png" />
+    <Content Include="Images\Monitoreo\Bell.png" />
+    <Content Include="Images\Monitoreo\btnrelevo.png" />
+    <Content Include="Images\Monitoreo\Buscar.png" />
+    <Content Include="Images\Monitoreo\campananegra.png" />
+    <Content Include="Images\Monitoreo\campanaroja.png" />
+    <Content Include="Images\Monitoreo\Circulonum.png" />
+    <Content Include="Images\Monitoreo\Cirnum.png" />
+    <Content Include="Images\Monitoreo\clave.png" />
+    <Content Include="Images\Monitoreo\ContacLoc.png" />
+    <Content Include="Images\Monitoreo\flechaarriba.png" />
+    <Content Include="Images\Monitoreo\Fuego.png" />
+    <Content Include="Images\Monitoreo\Grabar.png" />
+    <Content Include="Images\Monitoreo\Herramienta2.png" />
+    <Content Include="Images\Monitoreo\Herramientas.png" />
+    <Content Include="Images\Monitoreo\Medica.png" />
+    <Content Include="Images\Monitoreo\Policial.png" />
+    <Content Include="Images\Monitoreo\relojarena.png" />
+    <Content Include="Images\Monitoreo\Resolution.jpg" />
+    <Content Include="Images\Monitoreo\ResSeg.png" />
+    <Content Include="Images\Monitoreo\RondaMovil.png" />
+    <Content Include="Images\Monitoreo\Servicios.png" />
+    <Content Include="Images\Monitoreo\StopATM.png" />
+    <Content Include="Images\Monitoreo\Ubicacion.png" />
+    <Content Include="Images\Monitoreo\video.png" />
+    <Content Include="Images\print.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\start.png" />
+    <Content Include="Images\start_d.png" />
+    <Content Include="Images\stop.png" />
+    <Content Include="Images\stop_d.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Scripts\bootstrapPopup.js" />
+    <Content Include="Scripts\BusqAbonado.js" />
+    <Content Include="Scripts\ControlArea1864.js" />
+    <Content Include="Scripts\ControlArea.js" />
+    <Content Include="Scripts\ControlCierre.js" />
+    <Content Include="Scripts\ControlSenal.js" />
+    <Content Include="Scripts\EstadisticoAlarma.js" />
+    <Content Include="Scripts\EventoAdministrativo.js" />
+    <Content Include="Scripts\FalloTest.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Login.js" />
+    <Content Include="Scripts\Monitoreo.js" />
+    <Content Include="Scripts\ParticionEstado.js" />
+    <Content Include="Scripts\ReporteActividades.js" />
+    <Content Include="Scripts\SupervisionCaidas.js" />
+    <Content Include="Scripts\Visor.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Login\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Modulo\Visor.cshtml" />
+    <Content Include="Views\Modulo\BusquedaAbonado.cshtml" />
+    <Content Include="Views\Modulo\ControlArea.cshtml" />
+    <Content Include="Views\Modulo\ControlCierre.cshtml" />
+    <Content Include="Views\Modulo\ControlSenal.cshtml" />
+    <Content Include="Views\Modulo\EstadisticoAlarmas.cshtml" />
+    <Content Include="Views\Modulo\FalloTest.cshtml" />
+    <Content Include="Views\Modulo\Monitoreo.cshtml" />
+    <Content Include="Views\Modulo\ReporteActividades.cshtml" />
+    <Content Include="Views\Modulo\SupervisionCaidas.cshtml" />
+    <None Include="Properties\PublishProfiles\BCiudad.pubxml" />
+    <Content Include="Views\Modulo\ControlArea1864.cshtml" />
+    <None Include="Properties\PublishProfiles\ULTIMOWATCHER.pubxml" />
+    <None Include="Properties\PublishProfiles\Wacther_20160222.pubxml" />
+    <None Include="Properties\PublishProfiles\Watcher.pubxml" />
+    <None Include="Properties\PublishProfiles\watcher20160622.pubxml" />
+    <None Include="Properties\PublishProfiles\watcherultimate.pubxml" />
+    <None Include="Properties\PublishProfiles\Watcher_20160229.pubxml" />
+    <None Include="Properties\PublishProfiles\Watcher_20160302.pubxml" />
+    <Content Include="Views\Modulo\ParticionEstado.cshtml" />
+    <None Include="Properties\PublishProfiles\Watcher_20160308.pubxml" />
+    <None Include="Properties\PublishProfiles\Watcher_20160310.pubxml" />
+    <Content Include="Views\Modulo\EventoAdministrativo.cshtml" />
+    <None Include="Properties\PublishProfiles\watcher_20160526.pubxml" />
+    <None Include="Properties\PublishProfiles\Watcher_210616.pubxml" />
+    <None Include="Properties\PublishProfiles\watcher_monitoreo.pubxml" />
+    <None Include="Properties\PublishProfiles\WATCHER_ULTIMATEDOS.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessRules\BusinessRules.csproj">
+      <Project>{67f78e30-eed2-4347-9800-4b6c25c53970}</Project>
+      <Name>BusinessRules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{542358a6-fcfd-4ff3-a2ad-eabf13f00d09}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1474</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1474/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
